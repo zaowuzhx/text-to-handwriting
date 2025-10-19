@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Text to Handwriting Generator: Convert Your Text into Realistic Notes</title>
+    <meta name="description" content="Instantly convert your text to handwriting! Use our free online Text to Handwriting generator to create realistic, customizable handwritten notes, assignments, and letters. Easy to use, no sign-up required.">
+    <meta name="keywords" content="text to handwriting, handwriting converter, online handwriting generator, text to script, digital handwriting, handwritten notes generator, type to script">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-left">
+                    <a href="index.html" class="logo-link">
+                        <img src="logo.png" alt="Text to Handwriting Logo" class="logo-img">
+                        <span class="site-name">Text to Handwriting</span>
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="privacy-policy.html" target="_blank" class="nav-link">Privacy Policy</a>
+                    <a href="terms-of-service.html" target="_blank" class="nav-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="main-layout">
+                <!-- 左侧：操作区 -->
+                <div class="controls-area">
+                    <section class="controls-panel">
+                        <div class="control-group">
+                            <label for="font-select">Font Style</label>
+                            <select id="font-select">
+                                <option value="'Amertha', cursive" class="option-amertha">Amertha</option>
+                                <option value="'Bobogo', cursive" class="option-bobogo">Bobogo</option>
+                                <option value="'Breaking Road', cursive" class="option-breaking-road">Breaking Road</option>
+                                <option value="'Brittany Signature', cursive" class="option-brittany-signature">Brittany Signature</option>
+                                <option value="'Days of Charity', cursive" class="option-days-of-charity">Days of Charity</option>
+                                <option value="'Dear Script', cursive" class="option-dear-script">Dear Script</option>
+                                <option value="'Eliana', cursive" class="option-eliana">Eliana</option>
+                                <option value="'Pencil', cursive" class="option-pencil">Pencil</option>
+                                <option value="'Taken by Vultures', cursive" class="option-taken-by-vultures">Taken by Vultures</option>
+                            </select>
+                        </div>
+                        
+                        <!-- 字体快速选择栏 -->
+                        <div class="control-group font-quick-select">
+                            <label>Quick Font Selection</label>
+                            <div class="font-preview-buttons">
+                                <button class="font-preview-btn" data-font="'Amertha', cursive" title="Amertha">
+                                    <span class="amertha">Aa</span>
+                                </button>
+                                <button class="font-preview-btn" data-font="'Bobogo', cursive" title="Bobogo">
+                                    <span class="bobogo">Aa</span>
+                                </button>
+                                <button class="font-preview-btn" data-font="'Breaking Road', cursive" title="Breaking Road">
+                                    <span class="breaking-road">Aa</span>
+                                </button>
+                                <button class="font-preview-btn" data-font="'Brittany Signature', cursive" title="Brittany Signature">
+                                    <span class="brittany-signature">Aa</span>
+                                </button>
+                                <button class="font-preview-btn" data-font="'Days of Charity', cursive" title="Days of Charity">
+                                    <span class="days-of-charity">Aa</span>
+                                </button>
+                                <button class="font-preview-btn" data-font="'Dear Script', cursive" title="Dear Script">
+                                    <span class="dear-script">Aa</span>
+                                </button>
+                                <button class="font-preview-btn" data-font="'Eliana', cursive" title="Eliana">
+                                    <span class="eliana">Aa</span>
+                                </button>
+                                <button class="font-preview-btn active" data-font="'Pencil', cursive" title="Pencil">
+                                    <span class="pencil">Aa</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="font-size-input">Font Size: <span id="font-size-value">38px</span></label>
+                            <input type="range" id="font-size-input" min="12" max="60" value="38">
+                        </div>
+                        <div class="control-group">
+                            <label for="line-height-input">Line Spacing: <span id="line-height-value">1.80x</span></label>
+                            <input type="range" id="line-height-input" min="1.2" max="2.4" step="0.05" value="1.8">
+                        </div>
+                        <div class="control-group">
+                            <label for="color-picker">Ink Color</label>
+                            <div class="color-swatches">
+                                <button type="button" class="swatch-btn" data-color="#111111" title="Black"></button>
+                                <button type="button" class="swatch-btn active" data-color="#1a5c93" title="Blue"></button>
+                                <button type="button" class="swatch-btn" data-color="#c0392b" title="Red"></button>
+                                <button type="button" class="swatch-btn" data-color="#1f7a4f" title="Green"></button>
+                                <button type="button" class="swatch-btn swatch-custom" title="Custom">Custom</button>
+                            </div>
+                            <input type="color" id="color-picker" value="#1a5c93">
+                        </div>
+
+                        <!-- Paper Style 移入编辑模块 -->
+                        <div class="control-group paper-selector">
+                            <label>Paper Style</label>
+                            <div class="paper-options">
+                                <div class="paper-option active" data-paper="paper1">
+                                    <div class="preview"></div>
+                                    <span>Plain</span>
+                                </div>
+                                <div class="paper-option" data-paper="paper4">
+                                    <div class="preview"></div>
+                                    <span>Gray</span>
+                                </div>
+                                <div class="paper-option" data-paper="paper2">
+                                    <div class="preview"></div>
+                                    <span>Lined</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Download按钮移至操作区底部 -->
+                        <div class="download-area">
+                            <div class="button-row">
+                                <button id="download-btn">Download Image</button>
+                                <button id="clear-btn" class="btn-secondary" type="button">Clear Text</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 右侧：展示区 -->
+                <div class="display-area" id="editor">
+                    <div class="editor-container">
+                        <textarea id="text-input" placeholder="Type your text here..."></textarea>
+                        <canvas id="handwriting-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Introduction Section -->
+            <section class="intro-section">
+                <h2>Text to Handwriting Generator: Convert Your Text into Realistic Notes</h2>
+                <p>Stop typing, start writing—digitally. Our Text to Handwriting converter transforms your digital input into authentic-looking handwritten notes in seconds. Perfect for students, teachers, and anyone who wants to add a personal, human touch to their documents.</p>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="content-section features-section">
+                <h2>Key Features</h2>
+                <p class="section-intro">Our Text to Handwriting Converter offers a rich set of features designed to make your digital content look as close to real handwriting as possible.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3><span class="checkmark">✓</span> Realistic Handwriting Output</h3>
+                        <p>Simulate authentic handwriting with natural letter spacing, style variations, and fluid strokes to create documents that look genuinely handwritten.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><span class="checkmark">✓</span> 5+ Handwriting Font Selection</h3>
+                        <p>Choose from over 5 handwriting styles, including cursive and print options, to match your preferred writing tone—formal, casual, or expressive.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><span class="checkmark">✓</span> Multiple Paper Backgrounds</h3>
+                        <p>Select from lined pages, blank sheets, bordered styles, or themed backgrounds like gift paper, birthday notes, or love letters for added personality.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><span class="checkmark">✓</span> Pen Ink Color Options</h3>
+                        <p>Customize your handwriting using traditional blue, black, red, or gel pen ink tones—each available in light and dark variants for visual depth.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><span class="checkmark">✓</span> Real-Time Conversion</h3>
+                        <p>See your handwritten text come to life instantly as you type or paste into the input box. No delays, no complex steps.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><span class="checkmark">✓</span> Visual Effects for Realism</h3>
+                        <p>Add blur, shadow, or shading effects to enhance the handwritten look and give your output a lifelike texture.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><span class="checkmark">✓</span> PNG Export</h3>
+                        <p>Export your final result as a high-resolution image (PNG)—ready for printing, submission, or sharing.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How To Use Section -->
+            <section id="how-to-use" class="content-section howto-section">
+                <h2>How to Use the Text to Handwriting Converter</h2>
+                <p class="section-intro">Using an online text to handwriting converter is simple, fast, and requires no software installation. Here's how you can get started in just a few easy steps:</p>
+                
+                <div class="steps-container">
+                    <div class="step-card">
+                        <h3>1. Enter Your Text</h3>
+                        <p>Start by typing or pasting your content into the input field. Whether it's a short note or a long assignment, the tool processes it instantly.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h3>2. Customize the Style</h3>
+                        <p>Choose from various handwriting fonts, pen ink colors (black, blue, red), and a range of paper styles—from plain white sheets to lined paper and decorative backgrounds. Font options support different alphabets including <span class="highlight">Latin, Devanagari, Arabic, and Cyrillic</span>.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h3>3. Use Advanced Text Editing (Optional)</h3>
+                        <p>If you want more control over formatting, you can adjust headings, font sizes, bold/italic styles, or even insert lists and images using the text editor, depending on the platform.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h3>4. Live Preview Your Handwriting</h3>
+                        <p>See your handwritten content update in real-time as you type or make changes. This helps you fine-tune before downloading.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h3>5. Download Your Handwritten Output</h3>
+                        <p>Once you're satisfied, download your result as a <span class="highlight">high-resolution PNG image</span> or a <span class="highlight">multi-page PDF</span>—perfect for printing, submitting assignments, or sharing digitally.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h3>6. Upload Files Directly (Optional)</h3>
+                        <p>Our tools allow you to upload a Word (.doc/.docx) or PDF file, which will be automatically processed and converted into a handwritten format—ideal for longer content.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Section -->
+            <section id="benefits" class="content-section why-choose-section">
+                <h2>Why Choose Us?</h2>
+                
+                <div class="why-choose-grid">
+                    <div class="why-card">
+                        <h3><span class="checkmark">✓</span> 100% Free</h3>
+                        <p>No hidden charges or limitations. Use all features completely free without any restrictions or premium upgrades.</p>
+                    </div>
+
+                    <div class="why-card">
+                        <h3><span class="checkmark">✓</span> Save Time</h3>
+                        <p>Convert text to handwriting instantly. No need to manually write lengthy assignments—get results in seconds.</p>
+                    </div>
+
+                    <div class="why-card">
+                        <h3><span class="checkmark">✓</span> Multi-Language Support</h3>
+                        <p>Works with Hindi, English, Tamil, Telugu & more. Support for diverse scripts and regional languages.</p>
+                    </div>
+
+                    <div class="why-card">
+                        <h3><span class="checkmark">✓</span> Customizable</h3>
+                        <p>Choose from various handwriting styles, ink colors, and paper types to match your personal preferences and requirements.</p>
+                    </div>
+
+                    <div class="why-card">
+                        <h3><span class="checkmark">✓</span> High-Quality Output</h3>
+                        <p>Download as print-ready PNG or PDF files with high resolution suitable for submission and printing.</p>
+                    </div>
+
+                    <div class="why-card">
+                        <h3><span class="checkmark">✓</span> Safe & Secure</h3>
+                        <p>Your data is auto-deleted after download. We prioritize your privacy and don't store any of your content.</p>
+                    </div>
+
+                    <div class="why-card">
+                        <h3><span class="checkmark">✓</span> Mobile-Friendly</h3>
+                        <p>Works smoothly on smartphones and tablets. Access the tool anytime, anywhere on any device.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQs Section -->
+            <section id="faq" class="content-section faq-section">
+                 <h2>Frequently Asked Questions</h2>
+                 
+                 <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+                            <span>What is the Text to Handwriting Converter?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content" id="faq-a1" role="region" aria-labelledby="faq-q1">
+                            <p>The Text to Handwriting Converter is an online tool that transforms typed text into realistic handwritten notes. It allows you to choose different handwriting styles, paper backgrounds, and ink colors to create authentic-looking handwritten documents.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+                            <span>How do I convert text to handwriting?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content" id="faq-a2" role="region" aria-labelledby="faq-q2">
+                            <p>Simply type or paste your text into the input field, choose your preferred handwriting style, paper type, and ink color. The tool will instantly generate a handwritten version that you can preview in real-time and download as PNG or PDF.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+                            <span>Can I import a Word or PDF file?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content" id="faq-a3" role="region" aria-labelledby="faq-q3">
+                            <p>Yes, you can upload Word (.doc/.docx) or PDF files directly. The tool will automatically extract the text and convert it into handwritten format, making it perfect for converting lengthy assignments or documents.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+                            <span>What customization options are available?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content" id="faq-a4" role="region" aria-labelledby="faq-q4">
+                            <p>You can customize multiple aspects including handwriting fonts (90+ styles), pen ink colors (blue, black, red, green with light and dark variants), paper styles (plain, lined, grid, parchment), font size, and line spacing for a personalized output.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
+                            <span>Is it free to use?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content" id="faq-a5" role="region" aria-labelledby="faq-q5">
+                            <p>Yes, the Text to Handwriting Converter is completely free to use with no hidden charges, premium features, or registration requirements. All core features are available at no cost.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
+                            <span>Does it support multiple languages and alphabets?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content" id="faq-a6" role="region" aria-labelledby="faq-q6">
+                            <p>Yes, the tool supports multiple languages including Hindi, English, Tamil, Telugu, and more. It works with various alphabets such as Latin, Devanagari, Arabic, and Cyrillic scripts.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a7" id="faq-q7">
+                            <span>Can I upload a custom handwriting font?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content" id="faq-a7" role="region" aria-labelledby="faq-q7">
+                            <p>Yes, you can upload your own handwriting font to make the output truly personal and unique. This feature allows you to replicate your own handwriting style or use any custom font you prefer.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-a8" id="faq-q8">
+                            <span>How realistic does it look?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-content" id="faq-a8" role="region" aria-labelledby="faq-q8">
+                            <p>The output is highly realistic with natural letter spacing, style variations, and fluid strokes that mimic authentic handwriting. Advanced features like blur, shadow, and shading effects further enhance the lifelike appearance of the handwritten text.</p>
+                        </div>
+                    </div>
+                 </div>
+             </section>
+
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Text to Handwriting</h3>
+                    <p>Transform your digital text into authentic handwritten notes instantly. Free, easy to use, and no sign-up required.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-to-use">How to Use</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html" target="_blank">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" target="_blank">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Our mission is to provide a free, high-quality tool for converting text to handwriting for students, teachers, and professionals worldwide.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Text to Handwriting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

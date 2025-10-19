@@ -1,0 +1,1146 @@
+/* Smooth scroll for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header CTA */
+.header-cta {
+    margin-top: 1.25rem;
+}
+
+.primary-cta {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.primary-cta:hover {
+    background: var(--primary-hover-color);
+}
+
+/* Button row & secondary button */
+.button-row {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: var(--bg-color);
+}
+
+/* Color swatches */
+.color-swatches {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.swatch-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: #000;
+    cursor: pointer;
+}
+
+.swatch-btn:hover {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 1px;
+}
+
+.swatch-btn.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0,102,204,0.15);
+}
+
+.swatch-custom {
+    width: auto;
+    padding: 0 10px;
+    height: 28px;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--text-color);
+}
+
+/* Paper preview backgrounds via data attribute */
+.paper-option[data-paper="paper1"] .preview {
+    background-image: url('paper/paper-1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.paper-option[data-paper="paper2"] .preview {
+    background-image: url('paper/paper-2.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.paper-option[data-paper="paper4"] .preview {
+    background-image: url('paper/paper-4.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* --- 本地字体定义 --- */
+@font-face {
+    font-family: 'Amertha';
+    src: url('fonts/Amertha_PERSONAL_USE_ONLY.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bobogo';
+    src: url('fonts/Bobogo.otf') format('opentype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Breaking Road';
+    src: url('fonts/Breaking Road.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Brittany Signature';
+    src: url('fonts/BrittanySignature.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Days of Charity';
+    src: url('fonts/Days of Charity.otf') format('opentype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dear Script';
+    src: url('fonts/Dear Script (Demo_Font).otf') format('opentype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Eliana';
+    src: url('fonts/Eliana.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pencil';
+    src: url('fonts/Pencil-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Taken by Vultures';
+    src: url('fonts/Taken by Vultures Alternates Demo.otf') format('opentype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+/* --- 全局样式和变量 --- */
+:root {
+    /* 简洁配色方案 */
+    --bg-color: #f8f9fa;
+    --surface-color: #ffffff;
+    --text-color: #1a1a1a;
+    --text-secondary: #666666;
+    --primary-color: #0066cc;
+    --primary-hover-color: #0052a3;
+    --border-color: #dddddd;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* 页面内容居中 */
+    padding: 0 1rem;
+}
+
+/* --- 导航栏样式 --- */
+.navbar {
+    background-color: var(--surface-color);
+    box-shadow: 0 1px 0 var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.logo-img {
+    height: 36px;
+    width: auto;
+}
+
+.site-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.nav-right {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* --- 头部和页脚样式 --- */
+main {
+    padding-top: 2.5rem;
+}
+
+/* --- Introduction Section --- */
+.intro-section {
+    margin-top: 3rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.intro-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.intro-section p {
+    font-size: 1.05rem;
+    color: #e0e7ff;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.site-footer {
+    margin-top: 4rem;
+    padding: 2.5rem 0 1.5rem;
+    background-color: #f5f5f5;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+}
+
+.footer-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+}
+
+.footer-section p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* --- 主布局：左右结构 --- */
+.main-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.display-area {
+    flex: 1;
+    min-width: 0;
+}
+
+.controls-area {
+    width: 380px;
+    flex-shrink: 0;
+}
+
+/* --- 设置面板样式 --- */
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.control-group label {
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* 统一样式：下拉选择、滑块、颜色选择器 */
+.control-group select,
+.control-group input[type="range"],
+.control-group input[type="color"] {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    padding: 0.6rem 0.75rem;
+    background-color: var(--surface-color);
+    font-family: var(--font-family-sans);
+}
+
+.control-group select:hover,
+.control-group input[type="color"]:hover {
+    border-color: var(--text-secondary);
+}
+
+/* Font Select 特殊样式，让当前选中的字体在select中显示 */
+#font-select {
+    cursor: pointer;
+}
+
+/* 字体选择器选项样式 */
+.option-amertha { font-family: 'Amertha', cursive; }
+.option-bobogo { font-family: 'Bobogo', cursive; }
+.option-breaking-road { font-family: 'Breaking Road', cursive; }
+.option-brittany-signature { font-family: 'Brittany Signature', cursive; }
+.option-days-of-charity { font-family: 'Days of Charity', cursive; }
+.option-dear-script { font-family: 'Dear Script', cursive; }
+.option-eliana { font-family: 'Eliana', cursive; }
+.option-pencil { font-family: 'Pencil', cursive; }
+.option-taken-by-vultures { font-family: 'Taken by Vultures', cursive; }
+
+/* 鼠标悬停和聚焦效果，提升交互体验 */
+.control-group select:focus,
+.control-group input[type="range"]:focus,
+.control-group input[type="color"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.control-group input[type="color"] {
+    padding: 0.4rem;
+    height: 44px;
+    cursor: pointer;
+}
+
+/* 自定义Range滑块样式 */
+.control-group input[type="range"] {
+    padding: 0;
+    height: 5px;
+    background: var(--border-color);
+    border: none;
+    cursor: pointer;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.control-group input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+#font-size-value {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* --- 字体快速选择栏样式 --- */
+.font-quick-select {
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.font-quick-select label {
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+}
+
+.font-preview-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0;
+}
+
+.font-preview-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--surface-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.font-preview-btn:hover {
+    border-color: var(--primary-color);
+    background: var(--bg-color);
+}
+
+.font-preview-btn.active {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+}
+
+.font-preview-btn span {
+    font-size: 18px;
+    font-weight: 400;
+    pointer-events: none;
+}
+
+.font-preview-btn.active span {
+    color: white;
+}
+
+/* 字体预览按钮的字体样式 */
+.font-preview-btn .amertha { font-family: 'Amertha', cursive; }
+.font-preview-btn .bobogo { font-family: 'Bobogo', cursive; }
+.font-preview-btn .breaking-road { font-family: 'Breaking Road', cursive; }
+.font-preview-btn .brittany-signature { font-family: 'Brittany Signature', cursive; }
+.font-preview-btn .days-of-charity { font-family: 'Days of Charity', cursive; }
+.font-preview-btn .dear-script { font-family: 'Dear Script', cursive; }
+.font-preview-btn .eliana { font-family: 'Eliana', cursive; }
+.font-preview-btn .pencil { font-family: 'Pencil', cursive; }
+
+/* --- 纸张样式选择器 --- */
+.paper-selector {
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.paper-selector label {
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+}
+
+.paper-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0;
+}
+
+.paper-option {
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.paper-option .preview {
+    width: 65px;
+    height: 65px;
+    border-radius: 4px;
+    border: 2px solid var(--border-color);
+    margin-bottom: 0.4rem;
+    background-color: #fff;
+}
+
+.paper-option span {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.paper-option:hover .preview {
+    border-color: var(--primary-color);
+}
+
+.paper-option:hover span {
+    color: var(--primary-color);
+}
+
+/* 激活状态的样式 */
+.paper-option.active .preview {
+    border-color: var(--primary-color);
+    border-width: 2px;
+}
+
+.paper-option.active span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+
+/* --- 编辑器区域 --- */
+.editor-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 52 / 75;
+    min-height: 600px;
+    max-height: 85vh;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    background: var(--surface-color);
+}
+
+#text-input, #handwriting-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    /* 所有影响文本位置的样式(padding, font-size, line-height, font-family)都由JavaScript动态设置，确保完全一致 */
+}
+
+#text-input {
+    z-index: 10;
+    resize: none;
+    color: transparent; /* 文字颜色透明，避免和canvas重叠 */
+    caret-color: var(--text-color); /* 但光标可见 */
+    font-family: 'Amertha', cursive; /* 默认字体，会通过JS动态更新 */
+    white-space: pre-wrap; /* 保持换行和空格 */
+    overflow-wrap: break-word; /* 只在长单词时换行 */
+    box-sizing: border-box;
+}
+
+/* 文本选中时的样式 */
+#text-input::selection {
+    color: #ffffff !important;
+    background: #667eea !important;
+}
+
+#text-input::-moz-selection {
+    color: #ffffff !important;
+    background: #667eea !important;
+}
+
+#text-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+#text-input:focus {
+    outline: none;
+}
+
+#handwriting-canvas {
+    z-index: 1;
+}
+
+/* --- 下载按钮区域 --- */
+.download-area {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#download-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#download-btn:hover {
+    background: var(--primary-hover-color);
+}
+
+#download-btn:active {
+    background: var(--primary-hover-color);
+}
+
+#download-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#download-btn:disabled:hover {
+    background: var(--primary-color);
+}
+
+/* --- 响应式设计 --- */
+@media (max-width: 1024px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .controls-area {
+        width: 100%;
+        order: 2;
+    }
+    
+    .display-area {
+        order: 1;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+    
+    .nav-left {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+    }
+    
+    .logo-img {
+        height: 35px;
+    }
+    
+    .site-name {
+        font-size: 1.1rem;
+    }
+    
+    main {
+        padding-top: 1.5rem;
+    }
+    
+    .intro-section {
+        margin-top: 2rem;
+        padding: 1.75rem;
+        border-radius: 8px;
+    }
+    
+    .intro-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .intro-section p {
+        font-size: 0.95rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .footer-links a:hover {
+        padding-left: 0;
+    }
+    
+    .controls-panel {
+        gap: 1.25rem;
+        padding: 1.5rem;
+    }
+    
+    .editor-container {
+        min-height: 400px;
+        border-radius: 16px;
+    }
+    
+    .font-preview-btn {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .paper-option .preview {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .main-layout {
+        gap: 1.5rem;
+    }
+}
+
+/* --- 内容部分样式 --- */
+.content-section {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.content-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+}
+
+.content-section .section-intro {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 900px;
+}
+
+/* --- 功能介绍部分 --- */
+.features-section h2 {
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.features-section h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+    border-radius: 2px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    padding: 1.5rem;
+    background: #f0f4f8;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    display: block;
+}
+
+.feature-card .checkmark {
+    color: #10b981;
+    font-weight: bold;
+    margin-right: 0.35rem;
+    font-size: 1rem;
+}
+
+.feature-card p {
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* --- 使用说明部分 --- */
+.howto-section h2 {
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.howto-section h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+    border-radius: 2px;
+}
+
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.step-card {
+    padding: 1.25rem 1.5rem;
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    border-radius: 4px;
+}
+
+.step-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.step-card p {
+    color: #475569;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.highlight {
+    background-color: #ccf5f5;
+    padding: 0.15rem 0.35rem;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* --- 网站特点部分 --- */
+.why-choose-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.why-choose-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.why-card {
+    padding: 1.5rem;
+    background: #f0f4f8;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.why-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    display: block;
+}
+
+.why-card .checkmark {
+    color: #10b981;
+    font-weight: bold;
+    margin-right: 0.35rem;
+    font-size: 1rem;
+}
+
+.why-card p {
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* --- FAQ部分 --- */
+.faq-section h2 {
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.faq-section h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+    border-radius: 2px;
+}
+
+.faq-container {
+    margin-top: 2rem;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: #eff6ff;
+    border: 1px solid #e0e7ff;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.faq-question:hover {
+    background: #dbeafe;
+    border-color: #3b82f6;
+}
+
+.faq-question span:first-child {
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.faq-toggle {
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.faq-content {
+    display: none;
+    padding: 1rem 1.25rem;
+    background: #ffffff;
+    border: 1px solid #e0e7ff;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    margin-top: -1px;
+}
+
+.faq-content p {
+    color: #475569;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.faq-item.open .faq-question {
+    border-radius: 8px 8px 0 0;
+}
+
+.faq-item.open .faq-content {
+    display: block;
+}
+
+.faq-item.open .faq-toggle {
+    transform: rotate(45deg);
+}
+
+/* --- 响应式设计 - 内容部分 --- */
+@media (max-width: 1200px) {
+    .features-grid, .why-choose-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .features-grid, .why-choose-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .content-section {
+        margin-top: 2rem;
+        padding: 1.5rem 0;
+    }
+    
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .content-section .section-intro {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .features-grid, .why-choose-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .feature-card, .why-card {
+        padding: 1.25rem;
+    }
+    
+    
+    .steps-container {
+        gap: 0.875rem;
+    }
+    
+    .step-card {
+        padding: 1rem 1.25rem;
+    }
+    
+    .step-card h3 {
+        font-size: 0.95rem;
+    }
+    
+    .step-card p {
+        font-size: 0.875rem;
+    }
+    
+    .why-choose-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .faq-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .faq-question {
+        font-size: 0.9rem;
+        padding: 0.875rem 1rem;
+    }
+    
+    .faq-content {
+        padding: 0.875rem 1rem;
+    }
+    
+    .faq-item {
+        margin-bottom: 0.875rem;
+    }
+}
