@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. 定义纸张背景资源 ---
     // 将纸张背景的URL和颜色预先定义好，方便管理
     const paperStyles = {
-        paper1: { type: 'image', value: 'paper/paper-1.jpg' },
-        paper2: { type: 'image', value: 'paper/paper-2.jpg' },
-        paper4: { type: 'image', value: 'paper/paper-4.jpg' }
+        paper1: { type: 'image', value: './paper/paper-1.jpg' },
+        paper2: { type: 'image', value: './paper/paper-2.jpg' },
+        paper4: { type: 'image', value: './paper/paper-4.jpg' }
     };
     let currentPaper = 'paper1'; // 默认纸张样式
 

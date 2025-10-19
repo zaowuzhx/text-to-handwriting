@@ -81,21 +81,21 @@ html {
 
 /* Paper preview backgrounds via data attribute */
 .paper-option[data-paper="paper1"] .preview {
-    background-image: url('paper/paper-1.jpg');
+    background-image: url('./paper/paper-1.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .paper-option[data-paper="paper2"] .preview {
-    background-image: url('paper/paper-2.jpg');
+    background-image: url('./paper/paper-2.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .paper-option[data-paper="paper4"] .preview {
-    background-image: url('paper/paper-4.jpg');
+    background-image: url('./paper/paper-4.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -104,63 +104,63 @@ html {
 /* --- 本地字体定义 --- */
 @font-face {
     font-family: 'Amertha';
-    src: url('fonts/Amertha_PERSONAL_USE_ONLY.ttf') format('truetype');
+    src: url('./fonts/Amertha_PERSONAL_USE_ONLY.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Bobogo';
-    src: url('fonts/Bobogo.otf') format('opentype');
+    src: url('./fonts/Bobogo.otf') format('opentype');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Breaking Road';
-    src: url('fonts/Breaking Road.ttf') format('truetype');
+    src: url('./fonts/Breaking Road.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Brittany Signature';
-    src: url('fonts/BrittanySignature.ttf') format('truetype');
+    src: url('./fonts/BrittanySignature.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Days of Charity';
-    src: url('fonts/Days of Charity.otf') format('opentype');
+    src: url('./fonts/Days of Charity.otf') format('opentype');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Dear Script';
-    src: url('fonts/Dear Script (Demo_Font).otf') format('opentype');
+    src: url('./fonts/Dear Script (Demo_Font).otf') format('opentype');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Eliana';
-    src: url('fonts/Eliana.ttf') format('truetype');
+    src: url('./fonts/Eliana.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Pencil';
-    src: url('fonts/Pencil-Regular.ttf') format('truetype');
+    src: url('./fonts/Pencil-Regular.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Taken by Vultures';
-    src: url('fonts/Taken by Vultures Alternates Demo.otf') format('opentype');
+    src: url('./fonts/Taken by Vultures Alternates Demo.otf') format('opentype');
     font-weight: 400;
     font-display: swap;
 }
